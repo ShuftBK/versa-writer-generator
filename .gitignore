@@ -34,3 +34,7 @@ node_modules
 
 # Output C files Program
 *.c
+
+# Output Build Files
+versa-writer-generator-win32-x64/
+versa-writer-generator-win32-ia32/

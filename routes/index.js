@@ -80,20 +80,20 @@ router.post('/', function (req, res) {
     
     base += ("}\n}\n");
 
-    //res.render('index', { title: 'Express' });
     fs.writeFile('versa-writer.c', base , function (err) {
         if (err) {
 
         } else {
             res.download('./versa-writer.c', 'versa-writer.c', function (err) {
-                if (err) {} else {}
+                if (err) {
+                          console.log(err);
+                          res.status(err.status).end();
+                } else {
+                          console.log('Sent Sucsess...');
+                }
             });
         }
     });
-    //res.download('../versa-writer.c');
-
-
-    //res.render('index', { title: 'Express' });
 
 });
 

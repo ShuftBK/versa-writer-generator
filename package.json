@@ -1,9 +1,10 @@
 {
-  "name": "versa-ejs",
+  "name": "versa-writer-generator",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "release": "node release.js"
   },
     "main":"./main.js",
   "dependencies": {
