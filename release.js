@@ -6,7 +6,7 @@ packager({
     out: '../dist',
     name: config.name,
     platform: 'win32,darwin',
-    arch: 'x64',
+    arch: 'ia32',
     version: '0.36.4',
     // icon: './app.ico', 
     'app-bundle-id': 'work.coils.versawritergenerator',
