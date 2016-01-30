@@ -53,6 +53,7 @@ app.on('ready', function () {
     mainWindow = new BrowserWindow({
     width: 1000,
     height: 800,
+    'node-integration': false
   });
     
   mainWindow.loadURL('http://localhost:'+ port);
