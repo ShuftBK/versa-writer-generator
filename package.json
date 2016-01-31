@@ -10,7 +10,7 @@
     "clean:win": "del .\\dist\\win",
     "build": "npm run clean && npm run build:winzip",
     "build:win": "electron-packager ./ versa-writer-generator --out=dist/win/unzip --platform=win32 --arch=ia32,x64 --version=0.36.7",
-    "build:winzip": "electron-zip-packager ./ versa-writer-generator --out=dist/win/zip --platform=win32 --arch=ia32,x64 --version=0.36.7 --overwrite"
+    "build:winzip": "electron-zip-packager ./ versa-writer-generator --out=dist/win/zip --platform=win32 --arch=ia32,x64 --version=0.36.7 --ignore=dist/ --overwrite"
   },
   "main": "./main.js",
   "repository": {
