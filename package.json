@@ -1,22 +1,28 @@
 {
   "name": "versa-writer-generator",
-  "version": "1.2.0",
+  "version": "1.2.5",
   "homepage": "http://coils.work/",
   "scripts": {
     "start": "node ./bin/www",
-    "release": "node release.js"
+    "release": "node release.js",
+    "clean": "del .\\dist",
+    "clean:osx": "del .\\dist\\osx",
+    "clean:win": "del .\\dist\\win",
+    "build": "npm run clean && npm run build:winzip",
+    "build:win": "electron-packager ./ versa-writer-generator --out=dist/win/unzip --platform=win32 --arch=ia32,x64 --version=0.36.7",
+    "build:winzip": "electron-zip-packager ./ versa-writer-generator --out=dist/win/zip --platform=win32 --arch=ia32,x64 --version=0.36.7 --overwrite"
   },
-    "main":"./main.js",
-  "repository":{
-      "type":"git",
-      "url":"https://github.com/ShuftBK/versa-writer-generator.git"
-      
+  "main": "./main.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShuftBK/versa-writer-generator.git"
   },
   "dependencies": {
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "ejs": "~2.3.3",
+    "electron-packager": "^5.2.1",
     "express": "~4.13.1",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0"
