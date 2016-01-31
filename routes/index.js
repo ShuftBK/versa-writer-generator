@@ -3,27 +3,20 @@ var router = express.Router();
 var fs = require('fs');
 var config = require('../package.json');
 
-/* GET home page. */
-
 var column = 10;
 
 router.get('/', function (req, res, next) {
 
     console.log(req.query.column);
-    if(req.query.column != undefined){
-        
-    column = req.query.column;
-
+    if (req.query.column != undefined) {
+        column = req.query.column;
     }
-            
     res.render('index', {
         title: "バーサライタープログラム生成プログラム",
         record: column,
         version: config.version
     });
-    
- });
-
+});
 
 router.post('/', function (req, res) {
 
@@ -35,16 +28,16 @@ router.post('/', function (req, res) {
         '#use delay(CLOCK=4000000)' + '\n' +
         'void main(){' + '\n' +
         'while(1){ ' + '\n';
-    
+
     var box = column;
     var delayset = req.body.delayselect;
     var delay;
-    
-    if ( delayset == 'ms' ){
+
+    if (delayset == 'ms') {
         delay = 'delay_ms(';
-    } else if ( delayset == 'us' ){
+    } else if (delayset == 'us') {
         delay = 'delay_us(';
-    } else if ( delayset == 'cycle' ){
+    } else if (delayset == 'cycle') {
         delay = 'delay_cycle(';
     }
 
@@ -65,13 +58,12 @@ router.post('/', function (req, res) {
         } else if ((typeof (req.body["T" + i])) == 'undefined') {
             base += (delay + req.body.delay + '); \n');
         }
-
     }
-    
-    if(req.body.lightOption == 'reverse'){
+
+    if (req.body.lightOption == 'reverse') {
         base += (delay + req.body.delay + '); \n');
-        for(var i = box; i > 0; i-- ){
-            if((typeof (req.body["T" + i])) == 'string'){
+        for (var i = box; i > 0; i--) {
+            if ((typeof (req.body["T" + i])) == 'string') {
                 base += ('output_low(' + req.body["T" + i] + '); \n');
                 base += (delay + req.body.delay + '); \n');
                 base += ('output_high(' + req.body["T" + i] + '); \n');
@@ -89,24 +81,23 @@ router.post('/', function (req, res) {
         }
         base += (delay + req.body.delay + '); \n');
     }
-    
+
     base += ("}\n}\n");
 
-    fs.writeFile('versa-writer.c', base , function (err) {
+    fs.writeFile('versa-writer.c', base, function (err) {
         if (err) {
 
         } else {
             res.download('./versa-writer.c', 'versa-writer.c', function (err) {
                 if (err) {
-                          console.log(err);
-                          res.status(err.status).end();
+                    console.log(err);
+                    res.status(err.status).end();
                 } else {
-                          console.log('Sent Sucsess...');
+                    console.log('Sent Sucsess...');
                 }
             });
         }
     });
-
 });
 
 
