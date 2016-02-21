@@ -39,3 +39,6 @@ node_modules
 # Output Build Files
 versa-writer-generator-win32-x64/
 versa-writer-generator-win32-ia32/
+
+# Electron Build Cache
+cache/
